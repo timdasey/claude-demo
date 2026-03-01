@@ -1,0 +1,440 @@
+/* ============================================================
+   Base & Reset
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg:          #0f1117;
+  --color-surface:     #1a1d27;
+  --color-surface-2:   #22263a;
+  --color-border:      #2e3250;
+  --color-primary:     #6c63ff;
+  --color-primary-h:   #8880ff;
+  --color-text:        #e8eaf6;
+  --color-text-muted:  #8891b4;
+  --color-error:       #ff5f5f;
+  --color-error-bg:    rgba(255,95,95,0.1);
+  --color-success:     #4caf7d;
+
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+
+  --shadow-card: 0 4px 32px rgba(0,0,0,0.4);
+
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  min-height: 100dvh;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   Auth page layout
+   ============================================================ */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 48px;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-logo {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.auth-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* ============================================================
+   Card
+   ============================================================ */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* ============================================================
+   Tabs
+   ============================================================ */
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tab {
+  padding: 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  position: relative;
+}
+
+.tab:hover {
+  color: var(--color-text);
+  background: rgba(255,255,255,0.03);
+}
+
+.tab.active {
+  color: var(--color-primary);
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 2px 2px 0 0;
+}
+
+/* ============================================================
+   Tab panels
+   ============================================================ */
+.tab-panel {
+  display: none;
+  padding: 28px 24px 24px;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* ============================================================
+   Form fields
+   ============================================================ */
+.field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input-wrapper:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.2);
+}
+
+.input-prefix {
+  padding: 0 4px 0 14px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  user-select: none;
+  pointer-events: none;
+}
+
+input[type="text"],
+input[type="password"] {
+  flex: 1;
+  padding: 14px 14px 14px 4px;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* When there's no prefix */
+.input-wrapper input:first-child {
+  padding-left: 14px;
+}
+
+input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+input[type="password"] {
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+}
+
+input[type="password"]::placeholder {
+  font-family: var(--font-sans);
+  letter-spacing: normal;
+}
+
+.toggle-password {
+  padding: 0 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.toggle-password:hover {
+  color: var(--color-text);
+}
+
+.toggle-password svg {
+  width: 18px;
+  height: 18px;
+}
+
+.field-hint {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+/* ============================================================
+   Error message
+   ============================================================ */
+.error-message {
+  font-size: 0.875rem;
+  color: var(--color-error);
+  background: var(--color-error-bg);
+  border: 1px solid rgba(255,95,95,0.25);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  display: none;
+  animation: fade-in 0.15s ease;
+}
+
+.error-message.visible {
+  display: block;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-h);
+}
+
+/* ============================================================
+   Spinner
+   ============================================================ */
+.btn-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ============================================================
+   App page layout
+   ============================================================ */
+.app-page {
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-header-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.app-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-handle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  width: auto;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+
+.app-main {
+  flex: 1;
+  padding: 24px 20px;
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.welcome-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.welcome-card h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.welcome-card p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.welcome-handle {
+  color: var(--color-primary);
+}
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+.hidden {
+  display: none !important;
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   Responsive — larger screens
+   ============================================================ */
+@media (min-width: 480px) {
+  .auth-page {
+    padding: 48px 24px 64px;
+  }
+
+  .tab-panel {
+    padding: 32px 32px 28px;
+  }
+}
