@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in — Conference App</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-container">
+    <header class="auth-header">
+      <div class="auth-logo">&#9733;</div>
+      <h1 class="auth-title">Conference App</h1>
+      <p class="auth-subtitle">Connect with attendees</p>
+    </header>
+
+    <div class="card">
+      <!-- Tab switcher -->
+      <div class="tabs" role="tablist">
+        <button
+          class="tab active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-login"
+          id="tab-login"
+          data-tab="login"
+        >Log in</button>
+        <button
+          class="tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-signup"
+          id="tab-signup"
+          data-tab="signup"
+        >Sign up</button>
+      </div>
+
+      <!-- Login panel -->
+      <div class="tab-panel active" id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+        <form id="form-login" novalidate>
+          <div class="field">
+            <label for="login-handle">Handle</label>
+            <div class="input-wrapper">
+              <span class="input-prefix">@</span>
+              <input
+                type="text"
+                id="login-handle"
+                name="handle"
+                placeholder="yourhandle"
+                autocomplete="username"
+                autocapitalize="none"
+                spellcheck="false"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="login-password">Password</label>
+            <div class="input-wrapper">
+              <input
+                type="password"
+                id="login-password"
+                name="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                required
+              >
+              <button type="button" class="toggle-password" aria-label="Show password" data-target="login-password">
+                <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-eye-off hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="error-message" id="login-error" role="alert" aria-live="polite"></div>
+
+          <button type="submit" class="btn btn-primary" id="login-submit">
+            <span class="btn-label">Log in</span>
+            <span class="btn-spinner hidden" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Signup panel -->
+      <div class="tab-panel" id="panel-signup" role="tabpanel" aria-labelledby="tab-signup">
+        <form id="form-signup" novalidate>
+          <div class="field">
+            <label for="signup-handle">Choose a handle</label>
+            <div class="input-wrapper">
+              <span class="input-prefix">@</span>
+              <input
+                type="text"
+                id="signup-handle"
+                name="handle"
+                placeholder="yourhandle"
+                autocomplete="username"
+                autocapitalize="none"
+                spellcheck="false"
+                pattern="[a-zA-Z0-9_]+"
+                maxlength="30"
+                required
+              >
+            </div>
+            <p class="field-hint">Letters, numbers, and underscores only</p>
+          </div>
+
+          <div class="field">
+            <label for="signup-password">Password</label>
+            <div class="input-wrapper">
+              <input
+                type="password"
+                id="signup-password"
+                name="password"
+                placeholder="••••••••"
+                autocomplete="new-password"
+                minlength="8"
+                required
+              >
+              <button type="button" class="toggle-password" aria-label="Show password" data-target="signup-password">
+                <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-eye-off hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+            <p class="field-hint">At least 8 characters</p>
+          </div>
+
+          <div class="error-message" id="signup-error" role="alert" aria-live="polite"></div>
+
+          <button type="submit" class="btn btn-primary" id="signup-submit">
+            <span class="btn-label">Create account</span>
+            <span class="btn-spinner hidden" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>
